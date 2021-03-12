@@ -12,9 +12,7 @@
     </article>
   <% end %>
 
-  <div class="flickr_pagination mb-5">
-    <%= will_paginate @tweets, :container => false %>
-  </div>
+  <%= render 'components/pagination' %>
 
   <% @tweets.each do |tweet| %>
     <div class="box">
@@ -47,7 +45,5 @@
       </article>
     </div>
   <% end %>
-  <div class="flickr_pagination mb-5">
-    <%= will_paginate @tweets, :container => false %>
-  </div>
+  <%= render 'components/pagination' %>
 </div>
