@@ -1,0 +1,89 @@
+<div class="columns is-mobile is-centered mt-5">
+  <div class="column is-half">
+    <nav class="panel">
+      <p class="panel-heading">Profile</p>
+      <div class="panel-block">
+        <article class="media">
+          <div class="media-left">
+            <figure class="image is-64x64">
+              <%= gravatar_image_tag(@user.email, size: 64, alt: @user.name) %>
+            </figure>
+          </div>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong><%= @user.name %></strong> <br>
+                <small>@<%= @user.username %></small>
+              </p>
+              <% if current_user.id == @user.id %>
+                <%= link_to "Edit Profile", edit_user_registration_path, class: "button is-info" %>
+              <% end %>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="panel-block">
+        <div class="level is-mobile">
+          <div class="level-item has-centered-text">
+            <div>
+              <p class="heading">Tweets</p>
+              <p class="title is-6"><%= @user.tweets.count %></p>
+            </div>
+          </div>
+          <div class="level-item has-centered-text">
+            <div>
+              <p class="heading"><%= link_to "Followers", followers_user_path(@user) %></p>
+              <p class="title is-6"><%= @user.followers.count %></p>
+            </div>
+          </div>
+          <div class="level-item has-centered-text">
+            <div>
+              <p class="heading"><%= link_to "Following", following_user_path(@user) %></p>
+              <p class="title is-6"><%= @user.following.count %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<%= render 'components/pagination' %>
+
+<% @tweets.each do |tweet| %>
+  <div class="columns is-mobile is-centered mt-5">
+    <div class="column is-half">
+      <div class="box">
+        <article class="media">
+          <div class="media-left">
+            <figure class="image is-64x64">
+              <%= gravatar_image_tag(tweet.user.email, size: 64, alt: tweet.user.name) %>
+            </figure>
+          </div>
+          <div class="media-content">
+            <div class="content">
+              <strong><%= tweet.user.name %></strong>
+              <small>@<%= tweet.user.username %></small> -
+              <small class="is-size-7"><%= tweet.created_at.getlocal.strftime("%d %b %y, %H:%M%p") %></small>
+              <p> <%= tweet.tweet %> </p>
+            </div>
+            <% if user_signed_in? %>
+            <nav class="level">
+              <div class="level-left is-mobile">
+                <%= link_to tweet, class: "level-item" do %>
+                  <span class="icon"> <i class="fa fa-link" aria-hidden="true"></i> </span>
+                <% end %>
+                <%= link_to tweet, method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <span class="icon"> <i class="fa fa-trash-o" aria-hidden></i> </span>
+                <% end %>
+              </div>
+            </nav>
+          <% end %>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render 'components/pagination' %>
