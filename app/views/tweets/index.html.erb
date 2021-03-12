@@ -2,10 +2,10 @@
   <div class="container">
     <div class="columns">
       <% if user_signed_in? %>
-        <%= render 'profile' %>
+        <%= render 'components/profile' %>
       <% end %>
-      <%= render 'feed' %>
-      <%= render 'follow-feed' %>
+      <%= render 'components/feed' %>
+      <%= render 'components/follow_feed' %>
     </div>
   </div>
 </section>

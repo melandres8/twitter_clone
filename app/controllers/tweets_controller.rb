@@ -6,6 +6,7 @@ class TweetsController < ApplicationController
   def index
     @tweets = Tweet.all.order("created_at DESC")
     @tweet = Tweet.new
+    @users = User.all
   end
 
   # GET /tweets/1 or /tweets/1.json
@@ -59,13 +60,13 @@ class TweetsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tweet
-      @tweet = Tweet.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def tweet_params
-      params.require(:tweet).permit(:tweet)
-    end
+  # Only allow a list of trusted parameters through.
+  def tweet_params
+    params.require(:tweet).permit(:tweet)
+  end
 end

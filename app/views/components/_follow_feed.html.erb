@@ -1,0 +1,29 @@
+<div class="column">
+  <nav class="panel">
+    <p class="panel-heading">Who to follow</p>
+    <% @users.each do |user| %>
+      <% if current_user.nil? || current_user.id != user.id %>
+        <div class="panel-block">
+          <article class="media">
+            <div class="media-left">
+              <figure class="image is-32x32">
+                <img src="https://bulma.io/images/placeholders/32x32.png">
+              </figure>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong><%= user.name %></strong>
+                  <small>@<%= user.username %></small>
+                </p>
+                <% if current_user %>
+                  <%= render 'components/follow_btn', user: user %>
+                <% end %>
+              </div>
+            </div>
+          </article>
+        </div>
+      <% end %>
+    <% end %>
+  </nav>
+</div>
