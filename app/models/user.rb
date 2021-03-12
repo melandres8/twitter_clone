@@ -15,7 +15,6 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
 
-  # Helper methods
   def follow(user)
     active_relationships.create(followee_id: user.id)
   end
