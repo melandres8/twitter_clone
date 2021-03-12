@@ -8,5 +8,6 @@ Rails.application.routes.draw do
 
   resources :tweets
   resources :relationships, only: [:create, :destroy]
+  # resources :users, :path => '/' do end
   root 'tweets#index'
 end

@@ -12,6 +12,10 @@
     </article>
   <% end %>
 
+  <div class="flickr_pagination mb-5">
+    <%= will_paginate @tweets, :container => false %>
+  </div>
+
   <% @tweets.each do |tweet| %>
     <div class="box">
       <article class="media">
@@ -43,4 +47,7 @@
       </article>
     </div>
   <% end %>
+  <div class="flickr_pagination mb-5">
+    <%= will_paginate @tweets, :container => false %>
+  </div>
 </div>
