@@ -9,6 +9,6 @@ class UsersController < ApplicationController
   end
 
   def following
-    @user_following = current_user.following.order("name ASC").paginate(page: params[:page], per_page: 2)
+    @user_following = current_user.following.order("name ASC").paginate(page: params[:page], per_page: 10)
   end
 end
