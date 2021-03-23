@@ -5,10 +5,10 @@ class UsersController < ApplicationController
   end
 
   def followers
-    @user_followers = current_user.followers.order("name ASC").paginate(page: params[:page], per_page: 10)
+    @user_followers = current_user.followers.order("username ASC").paginate(page: params[:page], per_page: 10)
   end
 
   def following
-    @user_following = User.all.order("name ASC").paginate(page: params[:page], per_page: 4)
+    @user_following = current_user.following.order("name ASC").paginate(page: params[:page], per_page: 2)
   end
 end
