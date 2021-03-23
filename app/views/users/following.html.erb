@@ -1,4 +1,4 @@
-<% @users.each do |user| %>
+<% @user_following.each do |user| %>
   <% if current_user.nil? || current_user.following?(user) %>
     <div class="columns is-mobile is-centered mt-5">
       <div class="column is-half">
@@ -29,6 +29,6 @@
   <% end %>
 <% end %>
 
-<%= render 'components/pagination' %>
+<%= render 'components/pagination', obj: @user_following %>
 
 <%= link_to 'Back', tweets_path, class: "button is-info ml-5 mt-5" %>

@@ -48,7 +48,7 @@
   </div>
 </div>
 
-<%= render 'components/pagination' %>
+<%= render 'components/pagination', obj: @tweets %>
 
 <% @tweets.each do |tweet| %>
   <div class="columns is-mobile is-centered mt-5">
@@ -86,4 +86,4 @@
   </div>
 <% end %>
 
-<%= render 'components/pagination' %>
+<%= render 'components/pagination', obj: @tweets %>

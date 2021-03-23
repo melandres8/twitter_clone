@@ -12,7 +12,7 @@
     </article>
   <% end %>
 
-  <%= render 'components/pagination' %>
+  <%= render 'components/pagination', obj: @tweets %>
 
   <% @tweets.each do |tweet| %>
     <div class="box">
@@ -45,5 +45,5 @@
       </article>
     </div>
   <% end %>
-  <%= render 'components/pagination' %>
+  <%= render 'components/pagination', obj: @tweets %>
 </div>
