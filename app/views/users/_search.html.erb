@@ -1,0 +1,11 @@
+<%= form_with(url: search_user_path, local: true) do |f| %>
+  <div class="field">
+    <nav class="panel"></nav>
+      <p class="panel-heading">Search user</p>
+      <div class="panel-block">
+        <%= f.text_field :followee, class: "input", type: "text", placeholder: "Search user to follow" %>
+        <%= f.submit "Follow", class: "button is-info" %>
+      </div>
+    </nav>
+  </div>
+<% end %>

@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :tweets
   resources :relationships, only: [:create, :destroy]
   root 'tweets#index'
+  post 'search_user', to: 'users#search_user'
 end
