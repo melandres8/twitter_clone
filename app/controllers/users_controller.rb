@@ -1,31 +1,29 @@
 class UsersController < ApplicationController
+  include UserScoped
+
   def show
-    @user = User.find(params[:id])
-    @tweets = Tweet.all.order("created_at DESC").paginate(page: params[:page], per_page: 10)
+    @tweets = @user.tweets.order("created_at DESC").paginate(page: params[:page], per_page: 10)
   end
 
   def search_user
-    @user_followee = User.find_by(username: params[:followee])
-    if @user_followee
-      if current_user.followers.include?(@user_followee)
-        flash[:alert] = "User already followed."
-        redirect_to tweets_path
+    if params[:followee].present?
+      @to_follow = User.find_by(username: params[:followee])
+      if @to_follow != current_user
+        if current_user.following.include?(@to_follow)
+          flash[:alert] = "User already followed."
+          redirect_to root_path
+        else
+          follow = Relationship.create(follower: current_user, followee: @to_follow)
+          flash[:notice] = "Now, your are following #{@to_follow.username}"
+          redirect_to user_path(@to_follow.username)
+        end
       else
-        follow = Relationship.create(follower: current_user, followee: @user_followee)
-        flash[:notice] = "Now, your are following #{@user_followee.username}"
-        redirect_to @user_followee
+        flash[:alert] = "Invalid operation."
+        redirect_to root_path
       end
     else
-      flash[:alert] = "Input can't be blank."
-      redirect_to tweets_path
+      flash[:alert] = "Can't be blank."
+      redirect_to root_path
     end
-  end
-
-  def followers
-    @user_followers = current_user.followers.order("username ASC").paginate(page: params[:page], per_page: 10)
-  end
-
-  def following
-    @user_following = current_user.following.order("name ASC").paginate(page: params[:page], per_page: 10)
   end
 end

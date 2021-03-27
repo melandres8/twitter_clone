@@ -2,7 +2,6 @@
   <div class="mb-5">
     <%= render 'users/search' %>
   </div>
-
   <nav class="panel">
     <p class="panel-heading">Who to follow</p>
     <% @users.each do |user| %>
@@ -17,7 +16,7 @@
             <div class="media-content">
               <div class="content">
                 <p>
-                  <strong><%= link_to user.name, user_path(user.id) %></strong>
+                  <strong><%= link_to user.name, user_path(user.username) %></strong>
                   <small>@<%= user.username %></small>
                 </p>
                 <% if current_user %>

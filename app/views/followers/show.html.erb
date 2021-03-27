@@ -1,4 +1,4 @@
-<% @user_following.each do |user| %>
+<% @user_followers.each do |follower| %>
   <div class="columns is-mobile is-centered mt-5">
     <div class="column is-half">
       <div class="box">
@@ -12,11 +12,11 @@
             <div class="media-content">
               <div class="content">
                 <p>
-                  <strong><%= link_to user.name, user_path(user.username) %></strong>
-                  <small>@<%= user.username %></small>
+                  <strong><%= link_to follower.name, user_path(follower.username) %></strong>
+                  <small>@<%= follower.username %></small>
                 </p>
                 <% if current_user %>
-                  <%= render 'components/follow_btn', user: user %>
+                  <%= render 'components/follow_btn', user: follower %>
                 <% end %>
               </div>
             </div>
@@ -27,6 +27,6 @@
   </div>
 <% end %>
 
-<%= render 'components/pagination', obj: @user_following %>
+<%= render 'components/pagination', obj: @user_followers %>
 
-<%= link_to 'Back', tweets_path, class: "button is-info ml-5 mt-5" %>
+<%= link_to 'Back', root_path, class: "button is-info ml-5 mt-5" %>

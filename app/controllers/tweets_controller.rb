@@ -25,15 +25,12 @@ class TweetsController < ApplicationController
   # POST /tweets or /tweets.json
   def create
     @tweet = current_user.tweets.build(tweet_params)
-
-    respond_to do |format|
-      if @tweet.save
-        format.html { redirect_to root_path, notice: "Tweet was successfully created." }
-        format.json { render :show, status: :created, location: @tweet }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @tweet.errors, status: :unprocessable_entity }
-      end
+    if @tweet.save
+      flash[:notice] = "Tweet was successfully created."
+      redirect_to root_path
+    else
+      flash[:alert] = "Tweet can not be blank."
+      redirect_to root_path
     end
   end
 

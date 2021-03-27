@@ -1,10 +1,12 @@
 <% if flash[:notice] %>
   <div class="notification is-primary global-notification">
+    <button class="delete"></button>
     <p class="notice"><%= notice %></p>
   </div>
 <% end %>
 <% if flash[:alert] %>
   <div class="notification is-danger global-notification">
+    <button class="delete"></button>
     <p class="notice"><%= alert %></p>
   </div>
 <% end %>

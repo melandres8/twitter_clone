@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  before_save :sanitize_inputs
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -25,5 +26,10 @@ class User < ApplicationRecord
 
   def following?(user)
     following.include?(user)
+  end
+
+  def sanitize_inputs
+    self.email = email.downcase
+    self.username = username.downcase
   end
 end

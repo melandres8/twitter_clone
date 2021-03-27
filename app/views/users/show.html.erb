@@ -17,6 +17,8 @@
               </p>
               <% if current_user.id == @user.id %>
                 <%= link_to "Edit Profile", edit_user_registration_path, class: "button is-info" %>
+              <% else %>
+                <%= render 'components/follow_btn', user: @user %>
               <% end %>
             </div>
           </div>
@@ -32,13 +34,13 @@
           </div>
           <div class="level-item has-centered-text">
             <div>
-              <p class="heading"><%= link_to "Followers", followers_user_path(@user) %></p>
+              <p class="heading"><%= link_to "Followers", followers_path(@user.username) %></p>
               <p class="title is-6"><%= @user.followers.count %></p>
             </div>
           </div>
           <div class="level-item has-centered-text">
             <div>
-              <p class="heading"><%= link_to "Following", following_user_path(@user) %></p>
+              <p class="heading"><%= link_to "Following", following_path(@user.username) %></p>
               <p class="title is-6"><%= @user.following.count %></p>
             </div>
           </div>

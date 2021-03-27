@@ -12,7 +12,7 @@
             <div class="media-content">
               <div class="content">
                 <p>
-                  <strong><%= link_to follower.name, user_path(follower.id) %></strong>
+                  <strong><%= link_to follower.name, user_path(follower.username) %></strong>
                   <small>@<%= follower.username %></small>
                 </p>
                 <% if current_user %>

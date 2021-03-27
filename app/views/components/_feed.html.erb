@@ -24,7 +24,7 @@
         </div>
         <div class="media-content">
           <div class="content">
-            <strong><%= link_to tweet.user.name, user_path(tweet.user.id) %></strong>
+            <strong><%= link_to tweet.user.name, user_path(tweet.user.username) %></strong>
             <small>@<%= tweet.user.username %></small> -
             <small class="is-size-7"><%= tweet.created_at.getlocal.strftime("%d %b %y, %H:%M%p") %></small>
             <p> <%= tweet.tweet %> </p>
@@ -35,8 +35,10 @@
               <%= link_to tweet, class: "level-item" do %>
                 <span class="icon"> <i class="fa fa-link" aria-hidden="true"></i> </span>
               <% end %>
-              <%= link_to tweet, method: :delete, data: { confirm: "Are you sure?" } do %>
-                <span class="icon"> <i class="fa fa-trash-o" aria-hidden></i> </span>
+              <% if  tweet.user == current_user %>
+                <%= link_to tweet, method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <span class="icon"> <i class="fa fa-trash-o" aria-hidden></i> </span>
+                <% end %>
               <% end %>
             </div>
           </nav>
