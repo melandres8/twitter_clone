@@ -10,16 +10,15 @@ class UsersController < ApplicationController
       @to_follow = User.find_by(username: params[:followee])
       if @to_follow != current_user
         if current_user.following.include?(@to_follow)
-          flash[:alert] = "User already followed."
-          redirect_to root_path
+          redirect_to root_path, alert: "User already followed."
+        elsif !@to_follow
+          redirect_to root_path, alert: "Username does not exists."
         else
           follow = Relationship.create(follower: current_user, followee: @to_follow)
-          flash[:notice] = "Now, your are following #{@to_follow.username}"
-          redirect_to user_path(@to_follow.username)
+          redirect_to user_path(@to_follow.username), notice: "Now, your are following #{@to_follow.username}"
         end
       else
-        flash[:alert] = "Invalid operation."
-        redirect_to root_path
+        redirect_to root_path, alert: "Invalid operation."
       end
     end
   end
