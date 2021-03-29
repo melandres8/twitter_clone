@@ -16,7 +16,11 @@
             <div class="media-content">
               <div class="content">
                 <p>
-                  <strong><%= link_to user.name, user_path(user.username) %></strong>
+                  <% if user_signed_in? %>
+                    <strong><%= link_to user.name, user_path(user.username) %></strong>
+                  <% else %>
+                    <strong class="has-text-info"><%= user.name %></strong>
+                  <% end %>
                   <small>@<%= user.username %></small>
                 </p>
                 <% if current_user %>

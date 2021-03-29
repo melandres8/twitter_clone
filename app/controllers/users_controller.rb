@@ -21,9 +21,6 @@ class UsersController < ApplicationController
         flash[:alert] = "Invalid operation."
         redirect_to root_path
       end
-    else
-      flash[:alert] = "Can't be blank."
-      redirect_to root_path
     end
   end
 end

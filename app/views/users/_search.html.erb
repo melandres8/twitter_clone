@@ -4,7 +4,7 @@
       <p class="panel-heading">Search user</p>
       <div class="panel-block">
         <div class="mr-1">
-          <%= f.text_field :followee, class: "input", type: "text", placeholder: "Search user to follow" %>
+          <%= f.text_field :followee, class: "input", type: "text", placeholder: "Search user to follow", required: true %>
         </div>
         <div class="ml-1">
           <%= f.submit "Follow", class: "button is-info" %>
